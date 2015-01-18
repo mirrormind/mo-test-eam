@@ -5,9 +5,8 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>mo-test-eam</display-name>
 
-	<!-- Default page to redirect root to -->
+	<!-- Redirect root to default page -->
 	<welcome-file-list>
-		<welcome-file>Login.jsp</welcome-file> <!-- Temporary. This should also be index at some stage -->
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
@@ -16,20 +15,21 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
-	<!-- Route URL access to our API -->
-	<!-- SITE DOWN - WAITING ON JERSEY.JAR @ https://jersey.java.net -->
+	<!-- Route URL access to our API classes -->
 	<servlet>
 		<servlet-name>Jersey REST Service</servlet-name>
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
-			<param-value>mo-test-eam</param-value>
+			<!-- Search in this package -->
+			<param-value>moeam.api</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Jersey REST Service</servlet-name>
-		<url-pattern>/api/*</url-pattern>
+		<!-- Only search in the package if the URL contains this -->
+		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>

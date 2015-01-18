@@ -48,7 +48,7 @@ public class ExecuteAllScripts {
 		}
 	}
 
-	// TODO directory.listFiles() returns null
+	// TODO directory.listFiles() returns null so this class doesn't actually work yet
 	/** Get all script names in this package */
 	private ArrayList<String> getScriptNames() {
 		Class<ExecuteAllScripts> thisClass = ExecuteAllScripts.class;
