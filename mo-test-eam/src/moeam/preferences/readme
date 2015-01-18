@@ -1,0 +1,7 @@
+moeam.preferences readme
+
+Everyone should have the same code format for the sake of sanity.
+
+Just import "eclipseFormat.xml" into "Window > Preferences > Java > Code Style > Formatter"  
+so that every time you "CTRL + SHIFT + F" or save (if you enable auto formatting on save),
+it'll auto-format your file in how we've specifically defined it to look like.
