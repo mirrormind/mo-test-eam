@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS topics;
 
 CREATE TABLE topics
 (
-	P_topicId int PRIMARY KEY,
+	P_topicId int PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
 	F_gameId int, FOREIGN KEY (F_gameId) REFERENCES games(P_gameId),
 	topicName VARCHAR(20),
 	dateCreated DATE

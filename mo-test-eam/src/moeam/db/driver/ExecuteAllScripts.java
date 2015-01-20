@@ -1,4 +1,4 @@
-package moeam.dbScripts;
+package moeam.db.driver;
 
 import java.io.BufferedReader;
 import java.io.File;
