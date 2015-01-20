@@ -4,6 +4,6 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users 
 (
 	P_userId int PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
-	userName VARCHAR(15),
+	userName VARCHAR(30),
 	password VARCHAR(30)
 );
