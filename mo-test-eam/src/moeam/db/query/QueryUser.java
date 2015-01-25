@@ -39,7 +39,7 @@ public class QueryUser
         }
 
         // If 1 was returned (meaning 1 row was changed), return true.
-        if (affectedRows == 11)
+        if (affectedRows == 1)
         {
             return true;
         }
@@ -87,7 +87,12 @@ public class QueryUser
 
         // Transform the result set into a user object
         ArrayList<User> users = generateUserObject(resultSet);
-        return users.get(0);
+        if (!users.isEmpty())
+        {
+            return users.get(0);
+        }
+
+        return null;
     }
 
     /**
