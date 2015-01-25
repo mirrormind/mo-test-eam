@@ -14,8 +14,8 @@ public class UserHandler
     public void createNewUser(String p_userName, String p_password)
     {
         // Check if the username is unique
-        boolean userWasFound = m_queryUser.findUser(p_userName);
-        if (userWasFound)
+        boolean userAlreadyExists = m_queryUser.findUser(p_userName);
+        if (userAlreadyExists)
         {
             // TODO redirect to a page saying this user already exists, please pick a different name
             System.out.println("Tried to create a user but user already exists");

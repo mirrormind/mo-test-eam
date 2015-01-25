@@ -29,8 +29,8 @@ public class QueryUserTest
     // @Test
     public static void createUser()
     {
-        boolean affectedRows = m_queryUser.createUser(USERNAME, PASSWORD);
-        assertThat("User was successfully created", affectedRows, is(true));
+        boolean userWasCreated = m_queryUser.createUser(USERNAME, PASSWORD);
+        assertThat("User was successfully created", userWasCreated, is(true));
     }
 
     /** Test if we can find a user */

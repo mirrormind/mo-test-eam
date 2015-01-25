@@ -42,7 +42,7 @@ public class QueryGame
         }
 
         // If 1 was returned (meaning 1 row was changed), return true.
-        if (affectedRows == 11)
+        if (affectedRows == 1)
         {
             return true;
         }
@@ -50,19 +50,39 @@ public class QueryGame
     }
 
     /**
-     * Get a game by its name.
+     * Find a game by its title and company.
      * @param p_gameName
+     * @param p_companyName
+     * @return True if the game was found, false if not.
+     */
+    public boolean findGame(String p_gameName, String p_companyName)
+    {
+        Game game = getGame(p_gameName, p_companyName);
+
+        // Return true if the results aren't null
+        if (game != null)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Get a game by its title and company.
+     * @param p_gameName
+     * @param p_companyName
      * @return The Game object if found, else null.
      */
-    public Game getGame(String p_gameName)
+    public Game getGame(String p_gameName, String p_companyName)
     {
-        String findGame = "SELECT * FROM games WHERE gameName=?";
+        String findGame = "SELECT * FROM games WHERE gameName=? AND companyName=?";
 
         ResultSet resultSet = null;
         try
         {
             PreparedStatement statement = m_connection.prepareStatement(findGame);
             statement.setString(1, p_gameName);
+            statement.setString(2, p_companyName);
             resultSet = statement.executeQuery();
         }
         catch (SQLException e)
