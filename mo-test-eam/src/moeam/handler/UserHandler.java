@@ -1,6 +1,7 @@
-package moeam.user;
+package moeam.handler;
 
 import moeam.db.query.QueryUser;
+import moeam.handler.dao.User;
 
 public class UserHandler
 {

@@ -1,8 +1,9 @@
-package moeam.game;
+package moeam.handler;
 
 import java.util.ArrayList;
 
 import moeam.db.query.QueryGame;
+import moeam.handler.dao.Game;
 
 /** Incomplete */
 public class GameHandler

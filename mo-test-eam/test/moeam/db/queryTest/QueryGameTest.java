@@ -1,10 +1,10 @@
-package moeam.db;
+package moeam.db.queryTest;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import moeam.db.query.QueryGame;
-import moeam.game.Game;
+import moeam.handler.dao.Game;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

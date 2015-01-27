@@ -1,4 +1,4 @@
-package moeam.db.driver;
+package moeam.db.query.driver;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

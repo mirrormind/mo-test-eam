@@ -1,4 +1,4 @@
-package moeam.user;
+package moeam.handler.dao;
 
 /** Java bean for metadata about a user */
 public class User

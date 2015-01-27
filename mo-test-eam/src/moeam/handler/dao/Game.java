@@ -1,4 +1,4 @@
-package moeam.game;
+package moeam.handler.dao;
 
 /** Java bean for metadata about a game. */
 public class Game
