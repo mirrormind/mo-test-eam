@@ -70,7 +70,7 @@ public class QueryUser
      */
     public User getUser(String p_userName)
     {
-        String findUser = "SELECT userName, password FROM users WHERE userName=?";
+        String findUser = "SELECT * FROM users WHERE userName=?";
 
         ResultSet resultSet = null;
         try
@@ -102,16 +102,21 @@ public class QueryUser
      */
     private ArrayList<User> generateUserObject(ResultSet p_resultSet)
     {
-        ArrayList<User> users = new ArrayList<User>();
-
         try
         {
+            ArrayList<User> users = new ArrayList<User>();
+
             // Only create the user if something was found in the result set.
             while (p_resultSet.next())
             {
+                int userId = p_resultSet.getInt("P_userId");
                 String userName = p_resultSet.getString("userName");
                 String password = p_resultSet.getString("password");
-                users.add(new User(userName, password));
+
+                // Create a user and set its auto generated ID
+                User user = new User(userName, password);
+                user.setUserId(userId);
+                users.add(user);
             }
             return users;
         }

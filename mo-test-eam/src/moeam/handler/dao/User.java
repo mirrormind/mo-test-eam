@@ -3,6 +3,7 @@ package moeam.handler.dao;
 /** Java bean for metadata about a user */
 public class User
 {
+    private int m_userId = -1;
     private String m_userName;
     private String m_password;
 
@@ -15,6 +16,20 @@ public class User
     {
         m_userName = p_userName;
         m_password = p_password;
+    }
+
+    /**
+     * This shouldn't be manually set as the database auto generates an ID for the user.
+     * @param p_userId
+     */
+    public void setUserId(int p_userId)
+    {
+        m_userId = p_userId;
+    }
+
+    public int getUserId()
+    {
+        return m_userId;
     }
 
     public String getUserName()

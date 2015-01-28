@@ -136,18 +136,23 @@ public class QueryGame
      */
     private ArrayList<Game> generateGameObject(ResultSet p_resultSet)
     {
-        ArrayList<Game> games = new ArrayList<Game>();
-
         try
         {
-            // Only create the user if something was found in the result set.
+            ArrayList<Game> games = new ArrayList<Game>();
+
+            // Only create the game if something was found in the result set.
             while (p_resultSet.next())
             {
+                int gameId = p_resultSet.getInt("P_gameId");
                 String gameName = p_resultSet.getString("gameName");
                 String companyName = p_resultSet.getString("companyName");
                 String downloadLink = p_resultSet.getString("downloadLink");
                 String description = p_resultSet.getString("description");
-                games.add(new Game(gameName, companyName, downloadLink, description));
+
+                // Create a new game and also set the game ID
+                Game game = new Game(gameName, companyName, downloadLink, description);
+                game.setGameId(gameId);
+                games.add(game);
             }
             return games;
         }

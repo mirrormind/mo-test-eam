@@ -1,6 +1,7 @@
 package moeam.db.queryTest;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import moeam.db.query.QueryUser;
@@ -53,15 +54,15 @@ public class QueryUserTest
     @Test
     public void getUser()
     {
-        String userName = "";
-        String password = "";
 
         User user = m_queryUser.getUser(USERNAME);
         if (user != null)
         {
-            userName = user.getUserName();
-            password = user.getPassword();
+            int userId = user.getUserId();
+            String userName = user.getUserName();
+            String password = user.getPassword();
 
+            assertThat("User ID is not a null value ", userId, greaterThan(0));
             assertThat("Username is correct", userName, is(USERNAME));
             assertThat("Password is correct", password, is(PASSWORD));
         }

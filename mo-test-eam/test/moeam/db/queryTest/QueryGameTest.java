@@ -1,6 +1,7 @@
 package moeam.db.queryTest;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import moeam.db.query.QueryGame;
@@ -55,21 +56,18 @@ public class QueryGameTest
 
     /** Test if game can be retrieved */
     @Test
-    public void getUser()
+    public void getGame()
     {
-        String gameName = "";
-        String companyName = "";
-        String downloadLink = "";
-        String description = "";
-
         Game game = m_queryGame.getGame(GAME_NAME, COMPANY_NAME);
         if (game != null)
         {
-            gameName = game.getGameName();
-            companyName = game.getCompanyName();
-            downloadLink = game.getDownloadLink();
-            description = game.getDescription();
+            int gameId = game.getGameId();
+            String gameName = game.getGameName();
+            String companyName = game.getCompanyName();
+            String downloadLink = game.getDownloadLink();
+            String description = game.getDescription();
 
+            assertThat("Game ID is not a null value", gameId, greaterThan(0));
             assertThat("Game name is correct", gameName, is(GAME_NAME));
             assertThat("Company name is correct", companyName, is(COMPANY_NAME));
             assertThat("Download link is correct", downloadLink, is(DOWNLOAD_LINK));

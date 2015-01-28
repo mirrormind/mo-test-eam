@@ -3,6 +3,7 @@ package moeam.handler.dao;
 /** Java bean for metadata about a game. */
 public class Game
 {
+    private int m_gameId = -1;
     private String m_gameName;
     private String m_companyName;
     private String m_downloadLink;
@@ -14,6 +15,20 @@ public class Game
         m_companyName = p_companyName;
         m_downloadLink = p_downloadLink;
         m_description = p_description;
+    }
+
+    /**
+     * This shouldn't be manually set as the database auto generates its ID.
+     * @param p_gameId
+     */
+    public void setGameId(int p_gameId)
+    {
+        m_gameId = p_gameId;
+    }
+
+    public int getGameId()
+    {
+        return m_gameId;
     }
 
     public String getGameName()
