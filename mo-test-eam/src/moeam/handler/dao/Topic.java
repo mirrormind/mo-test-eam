@@ -1,5 +1,6 @@
 package moeam.handler.dao;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Topic
@@ -13,7 +14,14 @@ public class Topic
     {
         m_gameId = p_gameId;
         m_topicName = p_topicName;
-        m_date = p_date;
+
+        // Ensure date only stores the date and not the time
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        m_date = calendar.getTime();
     }
 
     /**

@@ -10,7 +10,7 @@ import moeam.handler.dao.Game;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class QueryGameTest
+public class QueryGameTest extends AbstractQueryTest
 {
     private static String GAME_NAME = "Recrudesce";
     private static String COMPANY_NAME = "MirrorMind";
@@ -51,7 +51,7 @@ public class QueryGameTest
     public void findNoGame()
     {
         boolean gameIsFound = m_queryGame.findGame(NON_EXISTING_GAME_NAME, NON_EXISTING_COMPANY);
-        assertThat("Non existant user was not found", gameIsFound, is(false));
+        assertThat("Non existent game was not found", gameIsFound, is(false));
     }
 
     /** Test if game can be retrieved */

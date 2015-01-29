@@ -10,7 +10,7 @@ import moeam.handler.dao.User;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class QueryUserTest
+public class QueryUserTest extends AbstractQueryTest
 {
     private static final String USERNAME = "mirrormindUsername";
     private static final String PASSWORD = "mirrormindPassword";
@@ -47,7 +47,7 @@ public class QueryUserTest
     public void findNoUser()
     {
         boolean userIsFound = m_queryUser.findUser(NON_EXISTING_USER);
-        assertThat("Non existant user was not found", userIsFound, is(false));
+        assertThat("Non existent user was not found", userIsFound, is(false));
     }
 
     /** Test if user can be retrieved */
