@@ -3,7 +3,7 @@ package moeam.handler;
 import java.util.ArrayList;
 
 import moeam.db.query.QueryGame;
-import moeam.handler.dao.Game;
+import moeam.handler.dataObject.Game;
 
 /** Incomplete */
 public class GameHandler

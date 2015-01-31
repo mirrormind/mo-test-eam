@@ -1,27 +1,19 @@
-package moeam.handler.dao;
+package moeam.handler.dataObject;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Topic
 {
     private int m_topicId = -1;
     private int m_gameId;
     private String m_topicName;
-    private Date m_date;
+    private LocalDate m_date;
 
-    public Topic(int p_gameId, String p_topicName, Date p_date)
+    public Topic(int p_gameId, String p_topicName, LocalDate p_date)
     {
         m_gameId = p_gameId;
         m_topicName = p_topicName;
-
-        // Ensure date only stores the date and not the time
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-        m_date = calendar.getTime();
+        m_date = p_date;
     }
 
     /**
@@ -58,12 +50,12 @@ public class Topic
         return m_topicName;
     }
 
-    public void setDate(Date p_date)
+    public void setDate(LocalDate p_date)
     {
         m_date = p_date;
     }
 
-    public Date getDate()
+    public LocalDate getDate()
     {
         return m_date;
     }

@@ -5,7 +5,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import moeam.db.query.QueryGame;
-import moeam.handler.dao.Game;
+import moeam.handler.dataObject.Game;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

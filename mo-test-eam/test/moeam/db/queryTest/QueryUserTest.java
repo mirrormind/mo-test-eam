@@ -5,7 +5,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import moeam.db.query.QueryUser;
-import moeam.handler.dao.User;
+import moeam.handler.dataObject.User;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

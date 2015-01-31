@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 import moeam.db.query.driver.DatabaseDriver;
-import moeam.handler.dao.Topic;
+import moeam.handler.dataObject.Topic;
 
 public class QueryTopic
 {
@@ -20,7 +20,7 @@ public class QueryTopic
      * @param p_topic
      * @return True if we have successfully entered the game into the DB, false if not.
      */
-    public boolean createTopic(Topic p_topic)
+    public boolean createTopic(int p_gameId, String p_topicName, LocalDate p_date)
     {
         String insertUserData = "INSERT INTO topics (F_gameId, topicName, dateCreated) VALUES (?, ?, ?)";
 
@@ -28,9 +28,9 @@ public class QueryTopic
         try
         {
             PreparedStatement statement = m_connection.prepareStatement(insertUserData);
-            statement.setInt(1, p_topic.getGameId());
-            statement.setString(2, p_topic.getTopicName());
-            statement.setDate(3, convertToSqlDate(p_topic.getDate()));
+            statement.setInt(1, p_gameId);
+            statement.setString(2, p_topicName);
+            statement.setDate(3, java.sql.Date.valueOf(p_date));
             affectedRows = statement.executeUpdate();
         }
         catch (SQLException e)
@@ -44,26 +44,6 @@ public class QueryTopic
             return true;
         }
         return false;
-    }
-
-    /**
-     * Converts java.util.Date to java.sql.Date. This only supports date conversion and NOT time.
-     * @param p_utilDate
-     * @return SQL Date object.
-     */
-    private java.sql.Date convertToSqlDate(Date p_utilDate)
-    {
-        return new java.sql.Date(p_utilDate.getTime());
-    }
-
-    /**
-     * Converts java.sql.Date to java.util.Date. This only supports date conversion and NOT time.
-     * @param p_sqlDate
-     * @return Java util Date object.
-     */
-    private Date convertToUtilDate(java.sql.Date p_sqlDate)
-    {
-        return new Date(p_sqlDate.getTime());
     }
 
     /**
@@ -115,13 +95,13 @@ public class QueryTopic
 
     /**
      * Gets all topics in the database.
-     * @return A collection of topics.
+     * @return A collection of topics, or an empty collection if no results were found.
      * TODO this has the potential to return unlimited number of entries! Should be limited!
      */
     @Deprecated
-    public ArrayList<Topic> getAllTopics()
+    public ArrayList<Topic> getAllTopics(int p_gameId)
     {
-        String findAllGames = "SELECT * FROM topics";
+        String findAllGames = "SELECT * FROM topics WHERE F_gameId = " + p_gameId;
 
         ResultSet resultSet = null;
         try
@@ -135,12 +115,9 @@ public class QueryTopic
         }
 
         // Transform the result set into a list of topic objects
-        ArrayList<Topic> topics = generateTopicObject(resultSet);
-        if (!topics.isEmpty())
-        {
-            return topics;
-        }
-        return null;
+        ArrayList<Topic> topics = new ArrayList<Topic>();
+        topics = generateTopicObject(resultSet);
+        return topics;
     }
 
     /**
@@ -160,7 +137,7 @@ public class QueryTopic
                 int topicId = p_resultSet.getInt("P_topicId");
                 int gameId = p_resultSet.getInt("F_gameId");
                 String topicName = p_resultSet.getString("topicName");
-                Date date = convertToUtilDate(p_resultSet.getDate("dateCreated"));
+                LocalDate date = p_resultSet.getDate("dateCreated").toLocalDate();
 
                 // Create a new topic and also set its ID
                 Topic topic = new Topic(gameId, topicName, date);

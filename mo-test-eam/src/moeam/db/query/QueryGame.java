@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import moeam.db.query.driver.DatabaseDriver;
-import moeam.handler.dao.Game;
+import moeam.handler.dataObject.Game;
 
 public class QueryGame
 {
